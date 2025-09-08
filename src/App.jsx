@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import MainNavBar from "./components/MainNavBar";
 import AuthContainer from "./components/AuthContainer";
-
+import Slider from "./components/Slider";
 function App() {
   // State to control which auth view is open, or null for none
   const [authView, setAuthView] = useState(null); // 'login' | 'register' | 'forgot' | null
@@ -26,6 +26,7 @@ function App() {
           />
         </div>
       )}
+      <Slider />
     </>
   );
 }
