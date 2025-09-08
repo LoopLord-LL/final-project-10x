@@ -23,6 +23,11 @@ export default function Navbar({ onLogin, onRegister }) {
           <AuthButton onLogin={onLogin} onRegister={onRegister} />
           <UserProfile />
         </div>
+        {/* Always show Cart and UserProfile on all screens, centered with more gap */}
+        <div className="flex md:hidden items-center justify-center gap-8 mt-2 mb-2 w-full">
+          <Cart />
+          <UserProfile />
+        </div>
 
         <button
           className="md:hidden text-gray-700"
@@ -47,9 +52,7 @@ export default function Navbar({ onLogin, onRegister }) {
       {menuOpen && (
         <div className="flex flex-col gap-6 mt-4 md:hidden">
           <NavLinks mobile={true} />
-          <Cart />
           <AuthButton mobile={true} onLogin={onLogin} onRegister={onRegister} />
-          <UserProfile />
         </div>
       )}
     </nav>

@@ -78,17 +78,6 @@ function App() {
     );
   });
 
-  // Sorting
-  if (sort === "price-asc") {
-    filteredProducts = filteredProducts.sort((a, b) => a.price - b.price);
-  } else if (sort === "price-desc") {
-    filteredProducts = filteredProducts.sort((a, b) => b.price - a.price);
-  } else if (sort === "rating-asc") {
-    filteredProducts = filteredProducts.sort((a, b) => a.rating - b.rating);
-  } else if (sort === "rating-desc") {
-    filteredProducts = filteredProducts.sort((a, b) => b.rating - a.rating);
-  }
-
   // Show AuthContainer only if authView is set
   return (
     <>
@@ -96,7 +85,7 @@ function App() {
         onLogin={() => setAuthView("login")}
         onRegister={() => setAuthView("register")}
       />
-      {authView && (
+      {authView ? (
         <div className="flex justify-center w-full mt-4">
           <AuthContainer
             view={authView}
@@ -106,52 +95,58 @@ function App() {
             onClose={() => setAuthView(null)}
           />
         </div>
-      )}
-      <Slider />
-      {/* Filter UI */}
-      <ProductFilter
-        filters={filters}
-        setFilters={setFilters}
-        brands={brands}
-        categories={categories}
-        sort={sort}
-        setSort={setSort}
-      />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-10">
-        {filteredProducts.length === 0 ? (
-          <div className="col-span-full text-center text-lg text-gray-500 py-12">
-            {filters.query ? `No Result For "${filters.query}"` : "No Result"}
+      ) : (
+        <>
+          <Slider />
+          {/* Filter UI */}
+          <ProductFilter
+            filters={filters}
+            setFilters={setFilters}
+            brands={brands}
+            categories={categories}
+            sort={sort}
+            setSort={setSort}
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-10">
+            {filteredProducts.length === 0 ? (
+              <div className="col-span-full text-center text-lg text-gray-500 py-12">
+                {filters.query
+                  ? `No Result For "${filters.query}"`
+                  : "No Result"}
+              </div>
+            ) : (
+              filteredProducts
+                .slice(0, visibleCount)
+                .map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    image={product.image}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    discount={product.discount}
+                    rating={product.rating}
+                  />
+                ))
+            )}
           </div>
-        ) : (
-          filteredProducts
-            .slice(0, visibleCount)
-            .map((product) => (
-              <ProductCard
-                key={product.id}
-                image={product.image}
-                title={product.title}
-                description={product.description}
-                price={product.price}
-                discount={product.discount}
-                rating={product.rating}
-              />
-            ))
-        )}
-      </div>
-      {/* Load More Button */}
-      {visibleCount < products.length && (
-        <div className="flex justify-center mb-10">
-          <button
-            onClick={handleLoadMore}
-            disabled={loading}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {loading ? "Loading..." : "Load More"}
-          </button>
-        </div>
+          {/* Load More Button */}
+          {visibleCount < products.length && (
+            <div className="flex justify-center mb-10">
+              <button
+                onClick={handleLoadMore}
+                disabled={loading}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {loading ? "Loading..." : "Load More"}
+              </button>
+            </div>
+          )}
+        </>
       )}
     </>
   );
+  // ...existing code...
 }
 
 export default App;

@@ -7,6 +7,7 @@ function NavLinks({ mobile = false }) {
     >
       <li className="cursor-pointer hover:text-blue-600">About Us</li>
       <li className="cursor-pointer hover:text-blue-600">Contact</li>
+      <li className="cursor-pointer hover:text-blue-600">Products</li>
     </ul>
   );
 }
