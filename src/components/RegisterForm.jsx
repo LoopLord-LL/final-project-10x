@@ -1,14 +1,43 @@
-function RegisterForm({ onSuccess, onSwitch }) {
+import React, { useState } from "react";
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePassword(password) {
+  // At least 8 chars, 1 uppercase, 1 lowercase, 1 number
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
+}
+
+export default function RegisterForm({ onSuccess, onSwitch }) {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email && username && password && password === confirm) {
-      onSuccess("Registration successful!");
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
     }
+    if (username.length < 3) {
+      setError("Username must be at least 3 characters.");
+      return;
+    }
+    if (!validatePassword(password)) {
+      setError(
+        "Password must be at least 8 characters, include uppercase, lowercase, and a number."
+      );
+      return;
+    }
+    if (password !== confirm) {
+      setError("Passwords do not match.");
+      return;
+    }
+    setError("");
+    onSuccess("Registration successful!");
   };
 
   return (
@@ -45,6 +74,9 @@ function RegisterForm({ onSuccess, onSwitch }) {
           onChange={(e) => setConfirm(e.target.value)}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
         />
+        {error && (
+          <div className="text-red-600 text-sm text-center">{error}</div>
+        )}
         <button
           type="submit"
           className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
@@ -63,4 +95,3 @@ function RegisterForm({ onSuccess, onSwitch }) {
     </div>
   );
 }
-export default RegisterForm;

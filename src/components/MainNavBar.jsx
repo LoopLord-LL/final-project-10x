@@ -7,7 +7,7 @@ import Cart from "./Cart";
 import AuthButton from "./AuthButton";
 import UserProfile from "./UserProfile";
 
-export default function Navbar() {
+export default function Navbar({ onLogin, onRegister }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-6">
           <Cart />
-          <AuthButton />
+          <AuthButton onLogin={onLogin} onRegister={onRegister} />
           <UserProfile />
         </div>
 
@@ -51,7 +51,7 @@ export default function Navbar() {
           <NavLinks mobile={true} />
           <SearchBar />
           <Cart />
-          <AuthButton mobile={true} />
+          <AuthButton mobile={true} onLogin={onLogin} onRegister={onRegister} />
           <UserProfile />
         </div>
       )}

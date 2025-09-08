@@ -1,13 +1,26 @@
-import { useState } from "react";
-function LoginForm({ onSuccess, onSwitch }) {
+import React, { useState } from "react";
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+export default function LoginForm({ onSuccess, onSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email && password) {
-      onSuccess("Login successful!");
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
     }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+    setError("");
+    onSuccess("Login successful!");
   };
 
   return (
@@ -30,6 +43,9 @@ function LoginForm({ onSuccess, onSwitch }) {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
         />
+        {error && (
+          <div className="text-red-600 text-sm text-center">{error}</div>
+        )}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
@@ -55,4 +71,3 @@ function LoginForm({ onSuccess, onSwitch }) {
     </div>
   );
 }
-export default LoginForm;

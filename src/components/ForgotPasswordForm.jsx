@@ -1,4 +1,6 @@
-function ForgotPasswordForm({ onSuccess, onSwitch }) {
+import React, { useState } from "react";
+
+export default function ForgotPasswordForm({ onSuccess, onSwitch }) {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
@@ -39,4 +41,3 @@ function ForgotPasswordForm({ onSuccess, onSwitch }) {
     </div>
   );
 }
-export default ForgotPasswordForm;
