@@ -1,0 +1,66 @@
+function RegisterForm({ onSuccess, onSwitch }) {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email && username && password && password === confirm) {
+      onSuccess("Registration successful!");
+    }
+  };
+
+  return (
+    <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+        Register
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirm}
+          onChange={(e) => setConfirm(e.target.value)}
+          className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          type="submit"
+          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+        >
+          Register
+        </button>
+      </form>
+      <div className="mt-4 text-sm text-center">
+        <button
+          onClick={() => onSwitch("login")}
+          className="text-blue-500 hover:underline"
+        >
+          Already have an account? Login
+        </button>
+      </div>
+    </div>
+  );
+}
+export default RegisterForm;
