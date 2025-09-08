@@ -2,7 +2,6 @@ import { useState } from "react";
 // import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
-import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import AuthButton from "./AuthButton";
 import UserProfile from "./UserProfile";
@@ -17,7 +16,6 @@ export default function Navbar({ onLogin, onRegister }) {
 
         <div className="hidden md:flex items-center gap-8">
           <NavLinks />
-          <SearchBar />
         </div>
 
         <div className="hidden md:flex items-center gap-6">
@@ -49,7 +47,6 @@ export default function Navbar({ onLogin, onRegister }) {
       {menuOpen && (
         <div className="flex flex-col gap-6 mt-4 md:hidden">
           <NavLinks mobile={true} />
-          <SearchBar />
           <Cart />
           <AuthButton mobile={true} onLogin={onLogin} onRegister={onRegister} />
           <UserProfile />
