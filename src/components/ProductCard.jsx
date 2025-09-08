@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { useCart } from "./CartContext";
 export default function ProductCard({
+  id,
   image,
   title,
   description,
@@ -7,6 +9,8 @@ export default function ProductCard({
   discount,
   rating,
 }) {
+  const { addToCart, removeFromCart, getProductQuantity } = useCart();
+  const quantity = getProductQuantity(id);
   // ფასდაკლებული ფასი თუ აქვს
   const finalPrice = discount
     ? (price - price * (discount / 100)).toFixed(2)
@@ -66,13 +70,58 @@ export default function ProductCard({
           )}
         </div>
 
-        {/* Add to cart */}
-        <button
-          className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-sm sm:text-base"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Add to Cart
-        </button>
+        {/* Add to cart or quantity controls */}
+        {quantity === 0 ? (
+          <button
+            className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-sm sm:text-base"
+            onClick={(e) => {
+              e.stopPropagation();
+              addToCart({
+                id,
+                image,
+                title,
+                description,
+                price,
+                discount,
+                rating,
+              });
+            }}
+          >
+            Add to Cart
+          </button>
+        ) : (
+          <div className="mt-4 w-full flex items-center justify-between bg-blue-600 rounded-lg overflow-hidden shadow">
+            <button
+              className="w-1/4 py-2 text-white text-xl font-bold hover:bg-blue-700 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                removeFromCart(id);
+              }}
+            >
+              -
+            </button>
+            <span className="w-1/2 text-center text-white font-semibold text-base select-none">
+              {quantity}
+            </span>
+            <button
+              className="w-1/4 py-2 text-white text-xl font-bold hover:bg-blue-700 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart({
+                  id,
+                  image,
+                  title,
+                  description,
+                  price,
+                  discount,
+                  rating,
+                });
+              }}
+            >
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

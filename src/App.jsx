@@ -120,6 +120,7 @@ function App() {
                 .map((product) => (
                   <ProductCard
                     key={product.id}
+                    id={product.id}
                     image={product.image}
                     title={product.title}
                     description={product.description}

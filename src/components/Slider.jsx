@@ -2,11 +2,8 @@ import React, { useState } from "react";
 
 const slides = [
   "https://imgs.search.brave.com/mHYJZcFKvXmGkkO5DjeidSgh9qJJMsqXwzkBcqLu0XA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9ja3NkYW5pc3Rl/ci5jb20vbGl2ZWx5/L2Fzc2V0cy9zeW50/aHdhdmVfcHJldmll/dy53ZWJw",
-  "https://imgs.search.brave.com/mHYJZcFKvXmGkkO5DjeidSgh9qJJMsqXwzkBcqLu0XA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9ja3NkYW5pc3Rl/ci5jb20vbGl2ZWx5/L2Fzc2V0cy9zeW50/aHdhdmVfcHJldmll/dy53ZWJw",
-  "https://imgs.search.brave.com/mHYJZcFKvXmGkkO5DjeidSgh9qJJMsqXwzkBcqLu0XA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9ja3NkYW5pc3Rl/ci5jb20vbGl2ZWx5/L2Fzc2V0cy9zeW50/aHdhdmVfcHJldmll/dy53ZWJw",
-  "https://imgs.search.brave.com/mHYJZcFKvXmGkkO5DjeidSgh9qJJMsqXwzkBcqLu0XA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9ja3NkYW5pc3Rl/ci5jb20vbGl2ZWx5/L2Fzc2V0cy9zeW50/aHdhdmVfcHJldmll/dy53ZWJw",
-  "https://imgs.search.brave.com/mHYJZcFKvXmGkkO5DjeidSgh9qJJMsqXwzkBcqLu0XA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cm9ja3NkYW5pc3Rl/ci5jb20vbGl2ZWx5/L2Fzc2V0cy9zeW50/aHdhdmVfcHJldmll/dy53ZWJw",
-  
+  "https://imgs.search.brave.com/ok2ckMvTQYcydQXXAUIrbPY7waA2ATUa3jE3fjbOkjs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDU0MjYz/OTUuanBn",
+  "https://imgs.search.brave.com/5ECw_rK1sJEesZc4VYEWwry6BjZm-fcRcY86ecVoDfs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDMxNDc1/NTguanBn"
 ];
 
 export default function Carousel() {
