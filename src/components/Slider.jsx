@@ -20,18 +20,18 @@ export default function Carousel() {
   return (
     <div className="relative w-full">
       {/* Carousel wrapper */}
-      <div className="relative h-80 overflow-hidden rounded-lg md:h-[32rem]">
+      <div className="overflow-hidden rounded-lg md:h-[32rem]">
         {slides.map((src, index) => (
           <div
             key={index}
-            className={`absolute w-full h-full transition-opacity duration-700 ease-in-out ${
+            className={`w-full h-full transition-opacity duration-700 ease-in-out ${
               index === current ? "opacity-100" : "opacity-0"
-            }`}
+            } ${index === current ? "relative" : "absolute"}`}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+              className="block w-full object-cover"
             />
           </div>
         ))}

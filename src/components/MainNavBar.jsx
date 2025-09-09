@@ -27,25 +27,25 @@ export default function Navbar({ onLogin, onRegister }) {
             <AuthButton onLogin={onLogin} onRegister={onRegister} />
             <UserProfile />
           </div>
-          {/* Always show Cart and UserProfile on all screens, centered with more gap */}
-          <div className="flex md:hidden items-center justify-center gap-8 mt-2 mb-2 w-full">
+          {/* On mobile, align Cart and UserProfile to the right */}
+          <div className="flex md:hidden items-center justify-end gap-3 mt-2 mb-2 w-full">
             <Cart onClick={() => setCartOpen(true)} />
             <UserProfile />
           </div>
 
           <button
-            className="md:hidden text-gray-700"
+            className="md:hidden text-gray-700 pl-4"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? (
               <img
-                src="/path/to/close-icon.png"
+                src="./src/assets/hamburger.png"
                 alt="Close menu"
                 className="w-6 h-6"
               />
             ) : (
               <img
-                src="/path/to/menu-icon.png"
+                src="./src/assets/hamburger.png"
                 alt="Open menu"
                 className="w-6 h-6"
               />
@@ -54,7 +54,7 @@ export default function Navbar({ onLogin, onRegister }) {
         </div>
 
         {menuOpen && (
-          <div className="flex flex-col gap-6 mt-4 md:hidden">
+          <div className="flex flex-col gap-3 mt-4 md:hidden">
             <NavLinks mobile={true} />
             <AuthButton
               mobile={true}
