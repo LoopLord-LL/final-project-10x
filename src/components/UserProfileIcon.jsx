@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { User } from "lucide-react";
 import UserProfileModal from "./UserProfileModal";
+import { useAuth } from "./AuthContext";
 
 const UserProfileIcon = () => {
   const [open, setOpen] = useState(false);
-
+  const { isLoggedIn } = useAuth();
+  if (!isLoggedIn) return null;
   return (
     <>
       <button

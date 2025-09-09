@@ -6,6 +6,7 @@ import Cart from "./Cart";
 import CartSidebar from "./CartSidebar";
 import AuthButton from "./AuthButton";
 import UserProfile from "./UserProfile";
+// import { AuthProvider } from "../hooks/useAuth"; // If needed at app root
 
 export default function Navbar({ onLogin, onRegister }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,4 +68,3 @@ export default function Navbar({ onLogin, onRegister }) {
     </>
   );
 }
-// ...existing code...
