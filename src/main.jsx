@@ -7,7 +7,12 @@ import { CartProvider } from "./components/CartContext";
 import { AuthProvider } from "./components/AuthContext";
 import "./index.css";
 
-createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  rootElement.classList.add("scroll-smooth");
+}
+
+createRoot(rootElement).render(
   <React.StrictMode>
     <AuthProvider>
       <CartProvider>

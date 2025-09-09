@@ -1,12 +1,26 @@
+import { useState } from "react";
+import Loader from "./Loader";
 import { useAuth } from "./AuthContext";
 
 function AuthButton({ mobile = false, onLogin, onRegister }) {
   const { isLoggedIn, logout } = useAuth();
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = () => {
+    setLoading(true);
+    setTimeout(() => {
+      logout();
+      setLoading(false);
+    }, 1000);
+  };
+
+  if (loading) return <Loader />;
+
   if (isLoggedIn) {
     return (
       <button
         className="px-4 py-2 border rounded-lg bg-red-500 text-white hover:bg-red-600 cursor-pointer"
-        onClick={logout}
+        onClick={handleLogout}
       >
         Sign Out
       </button>

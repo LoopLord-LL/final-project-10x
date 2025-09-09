@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Loader from "./Loader";
+import { ultraSmoothScrollTo } from "../ultraSmoothScroll";
 
 function NavLinks({ mobile = false }) {
   const [loading, setLoading] = useState(false);
@@ -10,6 +11,16 @@ function NavLinks({ mobile = false }) {
       window.location.href = "/";
     }, 1000);
   };
+  // Helper for smoothest scroll to anchor
+  const handleAnchorClick = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY;
+      ultraSmoothScrollTo(y, 1200);
+    }
+  };
+
   return (
     <>
       {loading && <Loader />}
@@ -29,17 +40,29 @@ function NavLinks({ mobile = false }) {
           </a>
         </li>
         <li>
-          <a href="#about" className="cursor-pointer hover:text-blue-600">
+          <a
+            href="#about"
+            className="cursor-pointer hover:text-blue-600"
+            onClick={(e) => handleAnchorClick(e, "about")}
+          >
             About Us
           </a>
         </li>
         <li>
-          <a href="#contact" className="cursor-pointer hover:text-blue-600">
+          <a
+            href="#contact"
+            className="cursor-pointer hover:text-blue-600"
+            onClick={(e) => handleAnchorClick(e, "contact")}
+          >
             Contact
           </a>
         </li>
         <li>
-          <a href="#products" className="cursor-pointer hover:text-blue-600">
+          <a
+            href="#products"
+            className="cursor-pointer hover:text-blue-600"
+            onClick={(e) => handleAnchorClick(e, "products")}
+          >
             Products
           </a>
         </li>
