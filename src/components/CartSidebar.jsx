@@ -57,22 +57,24 @@ export default function CartSidebar({ open, onClose }) {
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-bold">Your Cart</h2>
           <button
-            onClick={onClose}
             className="text-gray-500 hover:text-gray-800 text-2xl"
+            onClick={onClose}
           >
             &times;
           </button>
         </div>
-        <div className="p-4 flex-1 overflow-y-auto">
-          {cartItems.length === 0 ? (
-            <div className="text-center text-gray-500 mt-10">
-              Your cart is empty.
-            </div>
-          ) : (
-            <ul className="space-y-4">
-              {cartItems.map((item) => {
-                const product = getProductData(item.id) || item;
-                const hasDiscount = product.discount && product.discount > 0;
+        {/* Cart items list */}
+        <div className="flex-1 overflow-y-auto">
+          <ul className="p-4 flex flex-col gap-4">
+            {cartItems.length === 0 ? (
+              <li className="text-center text-gray-500 py-8">
+                Your cart is empty.
+              </li>
+            ) : (
+              cartItems.map((item) => {
+                const product = getProductData(item.id);
+                if (!product) return null;
+                const hasDiscount = !!product.discount;
                 const originalPrice = product.price;
                 const discountedPrice = hasDiscount
                   ? product.price - product.discount
@@ -130,9 +132,9 @@ export default function CartSidebar({ open, onClose }) {
                     </div>
                   </li>
                 );
-              })}
-            </ul>
-          )}
+              })
+            )}
+          </ul>
         </div>
         {/* Cart totals */}
         <div className="p-4 border-t">

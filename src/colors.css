@@ -1,0 +1,14 @@
+/* src/colors.css */
+:root {
+  --primary-blue: #2563eb;
+  --primary-purple: #7c3aed;
+  --secondary-blue: #60a5fa;
+  --secondary-purple: #a78bfa;
+  --background: #f5eafe;
+  --foreground: #18181b;
+  --accent: var(--primary-purple);
+  --button-bg: var(--primary-blue);
+  --button-text: #fff;
+  --card-bg: #fff;
+  --card-border: #e5e7eb;
+}

@@ -7,9 +7,14 @@ export default function ProductFilter({
   categories,
   sort,
   setSort,
+  ...props
 }) {
   return (
-    <div className="bg-white/80 shadow-lg rounded-2xl px-4 py-4 mb-4 mt-3 border border-gray-100 w-full flex flex-col gap-4">
+    <div
+      id="products"
+      {...props}
+      className="bg-white/80 shadow-lg rounded-2xl px-4 py-4 mb-4 mt-3 border border-gray-100 w-full flex flex-col gap-4"
+    >
       {/* Top: Centered search and sort */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full">
         <input

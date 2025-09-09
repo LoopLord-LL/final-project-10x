@@ -99,8 +99,15 @@ function App() {
       ) : (
         <>
           <Slider />
+          <div className="w-full flex justify-center my-4">
+            <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-black text-center drop-shadow-lg max-w-3xl">
+              Discover our exclusive selection of products, carefully curated to
+              meet all your needs!
+            </h2>
+          </div>
           {/* Filter UI */}
           <ProductFilter
+            id="products"
             filters={filters}
             setFilters={setFilters}
             brands={brands}
