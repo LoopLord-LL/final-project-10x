@@ -5,6 +5,7 @@ import ProductCard from "./components/ProductCard";
 import products from "./data/products";
 import AuthContainer from "./components/AuthContainer";
 import ProductFilter from "./components/ProductFilter";
+import Footer from "./components/Footer";
 
 function App() {
   // State to control which auth view is open, or null for none
@@ -143,11 +144,12 @@ function App() {
               </button>
             </div>
           )}
+          {/* Footer */}
+          <Footer />
         </>
       )}
     </>
   );
-  // ...existing code...
 }
 
 export default App;
