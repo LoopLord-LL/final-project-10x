@@ -24,16 +24,16 @@ export default function Carousel() {
         {slides.map((src, index) => (
           <div
             key={index}
-            className={`w-full h-full transition-opacity duration-700 ease-in-out absolute top-0 left-0 ${
-              index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+            className={`w-full h-full transition-opacity duration-700 ease-in-out absolute top-0 left-0 min-h-[180px] ${
+              index === current
+                ? "opacity-100 z-10 pointer-events-auto"
+                : "opacity-0 z-0 pointer-events-none"
             }`}
-            style={{ pointerEvents: index === current ? "auto" : "none" }}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="block w-full h-full object-cover"
-              style={{ minHeight: 180 }}
+              className="block w-full h-full object-cover min-h-[180px]"
             />
           </div>
         ))}

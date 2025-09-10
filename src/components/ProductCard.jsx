@@ -24,7 +24,7 @@ export default function ProductCard({
     <>
       {loading && <Loader />}
       <div
-        className="max-w-xs w-full bg-white shadow-lg rounded-2xl overflow-hidden border hover:shadow-xl transition flex flex-col mx-auto sm:max-w-sm md:max-w-xs cursor-pointer"
+        className="max-w-xs w-full bg-white shadow-lg rounded-2xl overflow-hidden border hover:shadow-xl transition flex flex-col mx-auto sm:max-w-sm md:max-w-xs cursor-pointer no-underline text-inherit"
         onClick={() => {
           setLoading(true);
           setTimeout(() => {
@@ -32,7 +32,6 @@ export default function ProductCard({
             navigate(`/product/${id}`);
           }, 500);
         }}
-        style={{ textDecoration: "none", color: "inherit" }}
       >
         {/* Image */}
         <div className="relative">
