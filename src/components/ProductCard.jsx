@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "./CartContext";
 export default function ProductCard({
   id,
@@ -17,7 +18,11 @@ export default function ProductCard({
     : price.toFixed(2);
 
   return (
-    <div className="max-w-xs w-full bg-white shadow-lg rounded-2xl overflow-hidden border hover:shadow-xl transition flex flex-col mx-auto sm:max-w-sm md:max-w-xs cursor-pointer">
+    <Link
+      to={`/product/${id}`}
+      className="max-w-xs w-full bg-white shadow-lg rounded-2xl overflow-hidden border hover:shadow-xl transition flex flex-col mx-auto sm:max-w-sm md:max-w-xs cursor-pointer"
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       {/* Image */}
       <div className="relative">
         <img
@@ -123,6 +128,6 @@ export default function ProductCard({
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
