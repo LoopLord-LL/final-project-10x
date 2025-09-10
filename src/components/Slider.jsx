@@ -20,7 +20,7 @@ export default function Carousel() {
   return (
     <div className="relative w-full">
       {/* Carousel image slides */}
-      <div className="overflow-hidden rounded-lg md:h-[32rem] relative">
+      <div className="overflow-hidden rounded-lg relative min-h-[180px] h-[40vw] max-h-[32rem] md:h-[32rem]">
         {slides.map((src, index) => (
           <div
             key={index}
@@ -32,7 +32,8 @@ export default function Carousel() {
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="block w-full object-cover"
+              className="block w-full h-full object-cover"
+              style={{ minHeight: 180 }}
             />
           </div>
         ))}

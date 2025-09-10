@@ -3,6 +3,7 @@ import products from "../data/products";
 import { useCart } from "./CartContext";
 import React, { useState } from "react";
 import ProductCard from "./ProductCard";
+import MainNavBar from "./MainNavBar";
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,108 +38,42 @@ export default function ProductDetail() {
 
   return (
     <>
-      <div
-        className="product-detail-container"
-        style={{
-          maxWidth: 900,
-          margin: "2rem auto",
-          padding: 24,
-          background: "#fff",
-          borderRadius: 16,
-          boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
-          position: "relative",
-          display: "flex",
-          gap: 32,
-          alignItems: "flex-start",
-        }}
-      >
+      <MainNavBar />
+      <div className="relative max-w-3xl mx-auto my-8 p-4 sm:p-6 bg-white rounded-2xl shadow-lg flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch">
         {/* Close Button */}
         <button
           aria-label="Close"
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            background: "transparent",
-            border: "none",
-            fontSize: 28,
-            fontWeight: 700,
-            color: "#888",
-            cursor: "pointer",
-            zIndex: 2,
-            transition: "color 0.2s",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.color = "#222")}
-          onMouseOut={(e) => (e.currentTarget.style.color = "#888")}
+          className="absolute top-4 right-4 text-2xl font-bold text-gray-400 hover:text-gray-800 transition-colors z-20 bg-transparent border-none"
           onClick={() => navigate("/")}
         >
           ×
         </button>
         {/* Left: Product Image Carousel */}
-        <div
-          style={{
-            width: 340,
-            height: 240,
-            position: "relative",
-            flexShrink: 0,
-          }}
-        >
+        <div className="relative w-full h-56 sm:w-[340px] sm:h-60 flex-shrink-0 mb-4 lg:mb-0">
           {/* Carousel slides */}
           {images.map((src, index) => (
             <div
               key={index}
-              style={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                opacity: index === current ? 1 : 0,
-                transition: "opacity 0.7s",
-                zIndex: index === current ? 1 : 0,
-              }}
+              className={`absolute inset-0 transition-opacity duration-700 ${
+                index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
             >
               <img
                 src={src}
                 alt={`Product ${index + 1}`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: 12,
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-                }}
+                className="w-full h-full object-cover rounded-xl shadow-md"
               />
             </div>
           ))}
           {/* Slide indicators */}
-          <div
-            style={{
-              position: "absolute",
-              left: "50%",
-              bottom: 12,
-              transform: "translateX(-50%)",
-              display: "flex",
-              gap: 8,
-              zIndex: 2,
-            }}
-          >
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-3 flex gap-2 z-20">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                style={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  background:
-                    current === index ? "#fff" : "rgba(255,255,255,0.5)",
-                  border: "none",
-                  cursor: "pointer",
-                  outline: "none",
-                  boxShadow: "0 1px 4px rgba(0,0,0,0.12)",
-                  padding: 0,
-                }}
+                className={`w-2.5 h-2.5 rounded-full border-none outline-none shadow ${
+                  current === index ? "bg-white" : "bg-white/50"
+                }`}
                 aria-label={`Go to image ${index + 1}`}
               />
             ))}
@@ -146,22 +81,7 @@ export default function ProductDetail() {
           {/* Prev button */}
           <button
             onClick={prevSlide}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: 8,
-              transform: "translateY(-50%)",
-              background: "rgba(0,0,0,0.3)",
-              border: "none",
-              borderRadius: "50%",
-              width: 32,
-              height: 32,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              zIndex: 2,
-            }}
+            className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/30 border-none rounded-full w-8 h-8 flex items-center justify-center cursor-pointer z-20"
             aria-label="Previous image"
           >
             <svg width="16" height="16" fill="none" viewBox="0 0 6 10">
@@ -177,22 +97,7 @@ export default function ProductDetail() {
           {/* Next button */}
           <button
             onClick={nextSlide}
-            style={{
-              position: "absolute",
-              top: "50%",
-              right: 8,
-              transform: "translateY(-50%)",
-              background: "rgba(0,0,0,0.3)",
-              border: "none",
-              borderRadius: "50%",
-              width: 32,
-              height: 32,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              zIndex: 2,
-            }}
+            className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/30 border-none rounded-full w-8 h-8 flex items-center justify-center cursor-pointer z-20"
             aria-label="Next image"
           >
             <svg width="16" height="16" fill="none" viewBox="0 0 6 10">
@@ -207,35 +112,34 @@ export default function ProductDetail() {
           </button>
         </div>
         {/* Right: Product Info */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 8 }}>
+        <div className="flex-1 min-w-0">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 break-words">
             {product.title}
           </h2>
-          <div style={{ color: "#555", marginBottom: 16, fontSize: 16 }}>
+          <div className="text-gray-600 mb-4 text-base sm:text-lg">
             {product.description}
           </div>
-          <div style={{ marginBottom: 16 }}>
+          <div className="mb-4">
             <strong>Brand:</strong>{" "}
             {product.brand || product.manufacturer || "-"}
           </div>
-          <div style={{ marginBottom: 16 }}>
+          <div className="mb-4">
             <strong>Manufacturer:</strong> {product.manufacturer || "-"}
           </div>
-          <div style={{ marginBottom: 16 }}>
+          <div className="mb-4">
             <strong>Category:</strong> {product.category || "-"}
           </div>
-          <div style={{ marginBottom: 16 }}>
+          <div className="mb-4">
             <strong>Rating:</strong>{" "}
             {product.rating ? `${product.rating}/5` : "-"}
           </div>
-          <div style={{ fontSize: 20, fontWeight: 600, marginBottom: 16 }}>
+          <div className="text-lg font-semibold mb-4">
             Price: ${product.price}
           </div>
           {/* Cart Controls */}
           {quantity === 0 ? (
             <button
-              className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-base"
-              style={{ marginTop: 20 }}
+              className="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition text-base"
               onClick={() =>
                 addToCart({
                   id: product.id,
@@ -251,7 +155,7 @@ export default function ProductDetail() {
               Add to Cart
             </button>
           ) : (
-            <div className="mt-4 w-full flex items-center justify-between bg-blue-600 rounded-lg overflow-hidden shadow">
+            <div className="mt-5 w-full flex items-center justify-between bg-blue-600 rounded-lg overflow-hidden shadow">
               <button
                 className="w-1/4 py-2 text-white text-xl font-bold hover:bg-blue-700 transition"
                 onClick={() => removeFromCart(product.id)}
@@ -283,22 +187,13 @@ export default function ProductDetail() {
       </div>
       {/* Related Products Section */}
       {related.length > 0 && (
-        <div style={{ maxWidth: 900, margin: "2rem auto", padding: "0 24px" }}>
-          <h3
-            style={{
-              fontSize: 24,
-              fontWeight: 700,
-              margin: "2.5rem 0 1.5rem 0",
-            }}
-          >
+        <div className="max-w-3xl mx-auto my-8 px-2 sm:px-6">
+          <h3 className="text-xl sm:text-2xl font-bold my-8">
             Related Products
           </h3>
-          <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+          <div className="flex flex-wrap gap-6">
             {related.map((p) => (
-              <div
-                key={p.id}
-                style={{ flex: "1 1 200px", minWidth: 220, maxWidth: 260 }}
-              >
+              <div key={p.id} className="flex-1 min-w-[180px] max-w-xs">
                 <ProductCard {...p} />
               </div>
             ))}

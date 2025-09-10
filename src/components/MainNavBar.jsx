@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import Cart from "./Cart";
 import CartSidebar from "./CartSidebar";
 import AuthButton from "./AuthButton";
 import UserProfile from "./UserProfile";
+import hamburgerIcon from "../assets/hamburger.png";
 
 export default function Navbar({ onLogin, onRegister }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,19 +37,11 @@ export default function Navbar({ onLogin, onRegister }) {
             className="md:hidden text-gray-700 pl-4"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? (
-              <img
-                src="./src/assets/hamburger.png"
-                alt="Close menu"
-                className="w-6 h-6"
-              />
-            ) : (
-              <img
-                src="./src/assets/hamburger.png"
-                alt="Open menu"
-                className="w-6 h-6"
-              />
-            )}
+            <img
+              src={hamburgerIcon}
+              alt={menuOpen ? "Close menu" : "Open menu"}
+              className="w-6 h-6"
+            />
           </button>
         </div>
 
