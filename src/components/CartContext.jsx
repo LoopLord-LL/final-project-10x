@@ -7,7 +7,16 @@ export function useCart() {
 }
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  // Load cart from localStorage on first render
+  const [cartItems, setCartItems] = useState(() => {
+    const saved = localStorage.getItem("cartItems");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Save cart to localStorage whenever it changes
+  React.useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // Add or increment product
   const addToCart = (product) => {
@@ -48,9 +57,18 @@ export function CartProvider({ children }) {
     return found ? found.quantity : 0;
   };
 
+  // Total count of all products in cart
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, getProductQuantity }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        getProductQuantity,
+        cartCount,
+      }}
     >
       {children}
     </CartContext.Provider>
