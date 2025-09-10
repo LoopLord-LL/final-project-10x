@@ -1,10 +1,9 @@
 import { createContext, useContext, useState } from "react";
-// Duplicate block removed
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // For demo: use localStorage for persistence
+  // Persist login state in localStorage
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem("isLoggedIn") === "true";
   });

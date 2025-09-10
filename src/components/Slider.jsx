@@ -19,7 +19,7 @@ export default function Carousel() {
 
   return (
     <div className="relative w-full">
-      {/* Carousel wrapper */}
+      {/* Carousel image slides */}
       <div className="overflow-hidden rounded-lg md:h-[32rem]">
         {slides.map((src, index) => (
           <div
@@ -37,7 +37,7 @@ export default function Carousel() {
         ))}
       </div>
 
-      {/* Indicators */}
+      {/* Slide indicators */}
       <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
         {slides.map((_, index) => (
           <button
@@ -50,7 +50,7 @@ export default function Carousel() {
         ))}
       </div>
 
-      {/* Prev button */}
+      {/* Previous slide button */}
       <button
         onClick={prevSlide}
         className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group"
@@ -73,7 +73,7 @@ export default function Carousel() {
         </span>
       </button>
 
-      {/* Next button */}
+      {/* Next slide button */}
       <button
         onClick={nextSlide}
         className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group"

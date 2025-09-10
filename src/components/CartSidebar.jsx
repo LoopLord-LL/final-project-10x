@@ -7,10 +7,10 @@ export default function CartSidebar({ open, onClose }) {
   const { cartItems, addToCart, removeFromCart } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
 
-  // Helper to get product data (for discount info)
+  // Get product data by id (for price/discount info)
   const getProductData = (id) => products.find((p) => p.id === id);
 
-  // Calculate totals
+  // Calculate total price and total discount saved
   let total = 0;
   let totalSaved = 0;
   cartItems.forEach((item) => {
@@ -34,8 +34,10 @@ export default function CartSidebar({ open, onClose }) {
     setShowCheckout(false);
   };
 
+  /**
+   * Handle checkout form submission (simulate payment)
+   */
   const handleCheckoutSubmit = (form) => {
-    // Here you can handle the form data, e.g., send to backend or show a success message
     alert("Payment submitted!\n" + JSON.stringify(form, null, 2));
     setShowCheckout(false);
     onClose();

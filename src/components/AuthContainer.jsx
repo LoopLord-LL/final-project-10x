@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 
-// Props: view, setView, message, setMessage, onClose
 export default function AuthContainer({
   view = "login",
   setView,
@@ -23,7 +22,7 @@ export default function AuthContainer({
     }, 1000); // Show loader for 1s, then reload
   };
 
-  // Prevent click inside modal from closing
+  // Prevent modal from closing when clicking inside
   const stopPropagation = (e) => e.stopPropagation();
 
   return (

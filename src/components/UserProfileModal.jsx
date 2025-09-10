@@ -20,7 +20,7 @@ const UserProfileModal = ({ open, onClose }) => {
 
   useEffect(() => {
     if (open) {
-      // Disable body scroll
+      // Prevent background scroll when modal is open
       document.body.style.overflow = "hidden";
       const savedData = localStorage.getItem("userProfile");
       if (savedData) {
@@ -33,10 +33,9 @@ const UserProfileModal = ({ open, onClose }) => {
         setProfileData(defaultProfile);
       }
     } else {
-      // Re-enable body scroll
       document.body.style.overflow = "";
     }
-    // Cleanup in case modal is unmounted
+    // Always clean up scroll lock on unmount
     return () => {
       document.body.style.overflow = "";
     };
@@ -96,7 +95,7 @@ const UserProfileModal = ({ open, onClose }) => {
 
   if (!open) return null;
 
-  // Handler for clicking the overlay (not the modal)
+  // Close modal if user clicks the overlay (not the modal itself)
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();

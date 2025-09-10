@@ -11,7 +11,7 @@ export default function ProductCard({
 }) {
   const { addToCart, removeFromCart, getProductQuantity } = useCart();
   const quantity = getProductQuantity(id);
-  // ფასდაკლებული ფასი თუ აქვს
+  // Calculate price after discount (if any)
   const finalPrice = discount
     ? (price - price * (discount / 100)).toFixed(2)
     : price.toFixed(2);

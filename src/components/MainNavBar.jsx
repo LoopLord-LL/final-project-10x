@@ -1,12 +1,10 @@
-import { useState } from "react";
-// import { Menu, X } from "lucide-react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import Cart from "./Cart";
 import CartSidebar from "./CartSidebar";
 import AuthButton from "./AuthButton";
 import UserProfile from "./UserProfile";
-// import { AuthProvider } from "../hooks/useAuth"; // If needed at app root
 
 export default function Navbar({ onLogin, onRegister }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,7 +25,7 @@ export default function Navbar({ onLogin, onRegister }) {
             <AuthButton onLogin={onLogin} onRegister={onRegister} />
             <UserProfile />
           </div>
-          {/* On mobile, align Cart and UserProfile to the right */}
+          {/* Mobile: align Cart and UserProfile to the right */}
           <div className="flex md:hidden items-center justify-end gap-3 mt-2 mb-2 w-full">
             <Cart onClick={() => setCartOpen(true)} />
             <UserProfile />
@@ -54,6 +52,7 @@ export default function Navbar({ onLogin, onRegister }) {
         </div>
 
         {menuOpen && (
+          // Show navigation and auth options in mobile menu
           <div className="flex flex-col gap-3 mt-4 md:hidden">
             <NavLinks mobile={true} />
             <AuthButton

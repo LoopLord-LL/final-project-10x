@@ -11,7 +11,7 @@ function NavLinks({ mobile = false }) {
       window.location.href = "/";
     }, 1000);
   };
-  // Helper for smoothest scroll to anchor
+  // Smooth scroll to anchor element by id
   const handleAnchorClick = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);

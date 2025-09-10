@@ -7,18 +7,20 @@ export function useCart() {
 }
 
 export function CartProvider({ children }) {
-  // Load cart from localStorage on first render
+  // Initialize cart from localStorage on first render
   const [cartItems, setCartItems] = useState(() => {
     const saved = localStorage.getItem("cartItems");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Save cart to localStorage whenever it changes
+  // Persist cart to localStorage whenever it changes
   React.useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Add or increment product
+  /**
+   * Add a product to the cart, or increment its quantity if already present
+   */
   const addToCart = (product) => {
     setCartItems((prev) => {
       const found = prev.find((item) => item.id === product.id);
@@ -34,7 +36,9 @@ export function CartProvider({ children }) {
     });
   };
 
-  // Decrement or remove product
+  /**
+   * Decrement product quantity, or remove from cart if quantity is 1
+   */
   const removeFromCart = (productId) => {
     setCartItems((prev) => {
       const found = prev.find((item) => item.id === productId);
@@ -51,7 +55,9 @@ export function CartProvider({ children }) {
     });
   };
 
-  // Get quantity for a product
+  /**
+   * Get quantity for a specific product in the cart
+   */
   const getProductQuantity = (productId) => {
     const found = cartItems.find((item) => item.id === productId);
     return found ? found.quantity : 0;

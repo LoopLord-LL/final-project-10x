@@ -15,7 +15,7 @@ export default function ProductFilter({
       {...props}
       className="bg-white/80 shadow-lg rounded-2xl px-4 py-4 mb-4 mt-3 border border-gray-100 w-full flex flex-col gap-4"
     >
-      {/* Top: Centered search and sort */}
+      {/* Search input and sort dropdown */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-3 w-full">
         <input
           type="text"
@@ -37,9 +37,9 @@ export default function ProductFilter({
           <option value="rating-asc">Rating: Low to High</option>
         </select>
       </div>
-      {/* Bottom: Horizontal filter bar */}
+      {/* Filter bar: category, brand, price, rating */}
       <div className="flex flex-wrap gap-3 md:gap-4 text-gray-700 items-center justify-center w-full">
-        {/* Category */}
+        {/* Category filter */}
         <select
           className="bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition shadow-sm"
           value={filters.category || ""}
@@ -55,7 +55,7 @@ export default function ProductFilter({
               </option>
             ))}
         </select>
-        {/* Brand */}
+        {/* Brand filter */}
         <select
           className="bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition shadow-sm"
           value={filters.brand || ""}
@@ -69,7 +69,7 @@ export default function ProductFilter({
               </option>
             ))}
         </select>
-        {/* Price Range Dropdown */}
+        {/* Price range filter */}
         <select
           className="bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition shadow-sm"
           value={filters.priceRange || ""}
@@ -85,7 +85,7 @@ export default function ProductFilter({
           <option value="201-300">$201 - $300</option>
           <option value="301-10000">$301+</option>
         </select>
-        {/* Rating */}
+        {/* Rating filter */}
         <select
           className="bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition shadow-sm"
           value={filters.rating || ""}
