@@ -104,9 +104,8 @@ const UserProfileModal = ({ open, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-red-200/60"
+      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
       onClick={handleOverlayClick}
-      style={{ backgroundColor: "rgba(255,0,0,0.2)" }}
     >
       <div
         className="bg-white shadow-lg rounded-xl p-6 w-full max-w-2xl relative animate-fadeIn max-h-[90vh] overflow-y-auto"

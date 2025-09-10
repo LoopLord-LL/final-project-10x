@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import slide1 from "../assets/slide1.png";
+import slide1 from "../assets/slide3.png";
+import slide3 from "../assets/slide1.png";
 import slide2 from "../assets/slide2.png";
-import slide3 from "../assets/slide3.png";
 
 const slides = [slide1, slide2, slide3];
 
@@ -20,13 +20,14 @@ export default function Carousel() {
   return (
     <div className="relative w-full">
       {/* Carousel image slides */}
-      <div className="overflow-hidden rounded-lg md:h-[32rem]">
+      <div className="overflow-hidden rounded-lg md:h-[32rem] relative">
         {slides.map((src, index) => (
           <div
             key={index}
-            className={`w-full h-full transition-opacity duration-700 ease-in-out ${
-              index === current ? "opacity-100" : "opacity-0"
-            } ${index === current ? "relative" : "absolute"}`}
+            className={`w-full h-full transition-opacity duration-700 ease-in-out absolute top-0 left-0 ${
+              index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            style={{ pointerEvents: index === current ? "auto" : "none" }}
           >
             <img
               src={src}

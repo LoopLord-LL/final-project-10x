@@ -51,7 +51,7 @@ function App() {
     new Set(products.map((p) => p.category))
   ).sort();
 
-  // Filtered products
+  // Filtered and sorted products
   let filteredProducts = products.filter((product) => {
     const matchesBrand = filters.brand
       ? product.manufacturer === filters.brand
@@ -78,6 +78,25 @@ function App() {
       matchesQuery
     );
   });
+
+  // Sort products
+  if (sort === "price-asc") {
+    filteredProducts = filteredProducts
+      .slice()
+      .sort((a, b) => a.price - b.price);
+  } else if (sort === "price-desc") {
+    filteredProducts = filteredProducts
+      .slice()
+      .sort((a, b) => b.price - a.price);
+  } else if (sort === "rating-asc") {
+    filteredProducts = filteredProducts
+      .slice()
+      .sort((a, b) => a.rating - b.rating);
+  } else if (sort === "rating-desc") {
+    filteredProducts = filteredProducts
+      .slice()
+      .sort((a, b) => b.rating - a.rating);
+  }
 
   // Show AuthContainer only if authView is set
   return (
